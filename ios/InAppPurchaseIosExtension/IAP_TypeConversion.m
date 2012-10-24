@@ -107,7 +107,12 @@
     FRESetArrayElementAt( params, 1, code );
     
     result = FRENewObject( "Error", 0, NULL, asError, NULL );
+    //result = FRENewObject( "Error", 2, params, asError, NULL );
     if( result != FRE_OK ) return result;
+    
+    result = [self FRESetObject:*asError property:"message" toString:error.description];
+    if( result != FRE_OK ) return result;
+    
     
     return FRE_OK;
 }
